@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-load_dotenv()  # Load .env file locally; on Render use environment variables
 
 TOKEN = os.getenv("BOT_TOKEN")
 GUILD_ID = int(os.getenv("GUILD_ID"))
@@ -24,7 +23,7 @@ async def on_ready():
     global job_added
     print(f"🤖 Bot connected as {client.user}")
     if not job_added:
-        scheduler.add_job(send_daily_checkin, 'cron', hour=22, minute=20)  # Adjust as needed
+        scheduler.add_job(send_daily_checkin, 'cron', hour=22, minute=30)  # Adjust as needed
         scheduler.start()
         job_added = True
 
