@@ -5,12 +5,10 @@ from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 load_dotenv()  # Load .env file locally; on Render use environment variables
-TOKEN="MTM3OTkyNTAwMjU2NDAxNDIxMQ.Gbh-Uv.-Ov1ufrx2GDGXOuj3e2r-Pr59py6uZoBvwKXBU"
-GUILD_ID=938189546288447518
-CHANNEL_ID=938189546288447521
-#TOKEN = os.getenv("BOT_TOKEN")
-#GUILD_ID = int(os.getenv("GUILD_ID"))
-#CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
+
+TOKEN = os.getenv("BOT_TOKEN")
+GUILD_ID = int(os.getenv("GUILD_ID"))
+CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 
 intents = discord.Intents.default()
 intents.members = True
