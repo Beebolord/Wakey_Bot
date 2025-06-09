@@ -12,12 +12,9 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-while True:
-    print("Bot still alive...")
-    time.sleep(30)
 
 
-load_dotenv()
+#load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 GUILD_ID = int(os.getenv("GUILD_ID"))
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
