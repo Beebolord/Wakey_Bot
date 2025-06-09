@@ -3,12 +3,7 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-import logging
 
-
-
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s] [%(levelname)s] %(message)s')
-logger = logging.getLogger(__name__)
 
 
 load_dotenv()
@@ -32,7 +27,6 @@ job_added = False
 async def on_ready():
     global job_added
     print(f"🤖 Bot connected as {client.user}")
-    logger.info(f"🤖 Bot connected as {client.user}")
 
     if not job_added:
         scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE)  # Adjust time
@@ -59,7 +53,6 @@ async def send_daily_checkin():
         msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅")
         await msg.add_reaction("✅")
         print(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
-        logger.info(f"✅ Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
 
         # Wait 8 seconds (you had 8, not 3600)
         await asyncio.sleep(DELAY)
@@ -89,7 +82,6 @@ async def send_daily_checkin():
 
         if non_reactors:
             print("Users who did NOT react:")
-            logger.info(f"- {member.display_name} ({member.id})")
             names = []
             for member in non_reactors:
                 print(f"- {member.display_name} ({member.id})")
@@ -109,5 +101,5 @@ async def send_daily_checkin():
             await channel.send("🎉 Everyone reacted to the daily check-in! Good job!")
 
 
-def start_bot():
+if __name__ == '__main__':
     client.run(TOKEN)
