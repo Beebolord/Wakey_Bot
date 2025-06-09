@@ -3,7 +3,12 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 
 load_dotenv()
@@ -26,7 +31,9 @@ job_added = False
 @client.event
 async def on_ready():
     global job_added
-    print(f"🤖 Bot connected as {client.user}")
+    logging.info(f"🤖 Bot connected as {client.user}")
+    logging.info(f"🤖 Bot connected as {client.user}")
+
 
     if not job_added:
         scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE)  # Adjust time
@@ -52,7 +59,7 @@ async def send_daily_checkin():
         # Send the daily check-in message
         msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅")
         await msg.add_reaction("✅")
-        print(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
+        logging.info(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
 
         # Wait 8 seconds (you had 8, not 3600)
         await asyncio.sleep(DELAY)

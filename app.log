@@ -1,0 +1,7 @@
+2025-06-08 21:27:27,332 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-08 21:27:27,338 - INFO - logging in using static token
+2025-06-08 21:27:28,017 - INFO - Shard ID None has connected to Gateway (Session ID: eb8895cb52d38266d48d3d530088d611).
+2025-06-08 21:27:30,041 - INFO - \U0001f916 Bot connected as WAKEY#1239
+2025-06-08 21:27:30,049 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-06-08 21:27:30,051 - INFO - Added job "send_daily_checkin" to job store "default"
+2025-06-08 21:27:30,052 - INFO - Scheduler started
