@@ -46,7 +46,7 @@ async def on_ready():
 
 
     if not job_added:
-        scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE)  # Adjust time
+        scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE, day_of_week='mon-fri')  # Adjust time
         scheduler.start()
         job_added = True
 
