@@ -42,7 +42,7 @@ job_added = False
 async def on_ready():
     global job_added
     logging.info(f"🤖 Bot connected as {client.user}")
-
+#done
 
 
     if not job_added:
