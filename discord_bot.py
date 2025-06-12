@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import logging
 import time
+from zoneinfo import ZoneInfo  # Python 3.9+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,19 +15,25 @@ logging.basicConfig(
 
 
 
-#load_dotenv()
+load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 GUILD_ID = int(os.getenv("GUILD_ID"))
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 HOUR = int(os.getenv("HOUR"))
 MINUTE=  int(os.getenv("MINUTE"))
 DELAY=  int(os.getenv("DELAY"))
+logging.info(f"TOKEN present: {'Yes' if TOKEN else 'No'}")
+logging.info(f"GUILD_ID: {GUILD_ID}")
+logging.info(f"CHANNEL_ID: {CHANNEL_ID}")
+logging.info(f"HOUR: {HOUR}, MINUTE: {MINUTE}, DELAY: {DELAY}")
+
 
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 intents.reactions = True
 
+eastern = ZoneInfo("America/Toronto")
 client = discord.Client(intents=intents)
 scheduler = AsyncIOScheduler()
 job_added = False
@@ -35,16 +42,16 @@ job_added = False
 async def on_ready():
     global job_added
     logging.info(f"🤖 Bot connected as {client.user}")
-    logging.info(f"🤖 Bot connected as {client.user}")
+
 
 
     if not job_added:
-        scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE)  # Adjust time
+        scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE, timezone=eastern)  # Adjust time
         scheduler.start()
         job_added = True
 
 
-EXCLUDED_USER_IDS = {359363342168752139, 1259906519621959825,317849297381097473,135605597478322176, 779535078123503639, 1379925002564014211}
+EXCLUDED_USER_IDS = {359363342168752139, 1259906519621959825,317849297381097473,135605597478322176, 779535078123503639, 1379925002564014211,367018787029123072}
 send_lock = asyncio.Lock()
 
 async def send_daily_checkin():
