@@ -95,7 +95,7 @@ async def send_daily_checkin():
             return
 
         # Send the daily check-in message
-        msg = await channel.send("THIS IS A TEST 👋 Daily check-in! Please react with ✅")
+        msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅")
         await msg.add_reaction("✅")
         print(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
 
