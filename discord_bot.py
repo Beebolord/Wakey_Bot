@@ -51,34 +51,7 @@ async def on_ready():
         job_added = True
 
 
-EXCLUDED_USER_IDS = {
-    359363342168752139,
-    1259906519621959825,
-    317849297381097473,
-    135605597478322176,
-    779535078123503639,
-    1379925002564014211,
-    367018787029123072,
-    430222605577093140,
-    1263252817955651738,
-    422098511929016322,
-    209500934349258753,
-    318517194432577537,
-    1022310059423838238,
-    794962410397237248,
-    823001067834834995,
-    269660014673657867,
-    168237010685919232,
-    461547097527681025,
-    550797075210829845,
-    696911999027642416,
-    396028960338739210,
-    910583247065460736,
-    186682913964818432,
-    186682913964818432,
-    605416296212856870,
-    934162918071750746,
-    1176327473554788455
+EXCLUDED_USER_IDS = {1,2,3
 }
 send_lock = asyncio.Lock()
 
@@ -95,7 +68,7 @@ async def send_daily_checkin():
             return
 
         # Send the daily check-in message
-        msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅")
+        msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅ by 7:15")
         await msg.add_reaction("✅")
         print(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
 
