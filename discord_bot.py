@@ -51,7 +51,12 @@ async def on_ready():
         job_added = True
 
 
-EXCLUDED_USER_IDS = {1,2,3
+EXCLUDED_USER_IDS = {
+    365602126790918145,
+    189186215331758080,
+    484116229871894528,
+    359363342168752139,
+
 }
 send_lock = asyncio.Lock()
 
