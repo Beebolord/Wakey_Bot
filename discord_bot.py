@@ -111,7 +111,6 @@ async def send_daily_checkin():
                 names.append(member.display_name)
                 try:
                     print("will send txt")
-                    await member.send("⏰ You missed the daily check-in!")
                 except discord.Forbidden:
                     print(f"Cannot DM {member.display_name}")
 
