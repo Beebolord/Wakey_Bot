@@ -43,10 +43,15 @@ async def on_ready():
     global job_added
     logging.info(f"🤖 Bot connected as {client.user}")
 #done
-
+    day = time.localtime().tm_wday
+    hour = 0
+    if day == 4:
+        hour = 9
+    else:
+        hour = 10
 
     if not job_added:
-        scheduler.add_job(send_daily_checkin, 'cron', hour=HOUR, minute=MINUTE, day_of_week='mon-fri')  # Adjust time
+        scheduler.add_job(send_daily_checkin, 'cron', hour=hour, minute=30, day_of_week='mon-fri')  # Adjust time
         scheduler.start()
         job_added = True
 
@@ -73,7 +78,7 @@ async def send_daily_checkin():
             return
 
         # Send the daily check-in message
-        msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅ by 7:15")
+        msg = await channel.send("@everyone 👋 Daily check-in! Please react with ✅")
         await msg.add_reaction("✅")
         print(f"Sent daily check-in message (ID: {msg.id}) in #{channel.name}")
 
